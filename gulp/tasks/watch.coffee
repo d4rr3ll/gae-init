@@ -8,7 +8,7 @@ gulp.task 'reload', false, ->
   gulp.watch([
     "#{paths.static.dev}/**/*.{css,js}"
     "#{paths.main}/**/*.{html,py}"
-  ]).on 'change', $.livereload.changed
+  ], { interval:500 }).on 'change', $.livereload.changed
 
 
 gulp.task 'ext_watch_rebuild', false, (callback) ->
@@ -16,10 +16,10 @@ gulp.task 'ext_watch_rebuild', false, (callback) ->
 
 
 gulp.task 'watch', false, ->
-  gulp.watch 'requirements.txt', ['pip']
-  gulp.watch 'package.json', ['npm']
-  gulp.watch 'bower.json', ['ext_watch_rebuild']
-  gulp.watch 'gulp/config.coffee', ['ext:dev', 'style:dev', 'script:dev']
-  gulp.watch paths.static.ext, ['ext:dev']
-  gulp.watch "#{paths.src.script}/**/*.coffee", ['script:dev']
-  gulp.watch "#{paths.src.style}/**/*.less", ['style:dev']
+  gulp.watch 'requirements.txt', { interval: 500 }, ['pip']
+  gulp.watch 'package.json', { interval: 500 }, ['npm']
+  gulp.watch 'bower.json', { interval: 500 }, ['ext_watch_rebuild']
+  gulp.watch 'gulp/config.coffee', { interval: 500 }, ['ext:dev', 'style:dev', 'script:dev']
+  gulp.watch paths.static.ext, { interval: 500 }, ['ext:dev']
+  gulp.watch "#{paths.src.script}/**/*.coffee", { interval: 500 }, ['script:dev']
+  gulp.watch "#{paths.src.style}/**/*.less", { interval: 500 }, ['style:dev']
